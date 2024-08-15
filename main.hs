@@ -1,7 +1,6 @@
 module Main where
 
 import System.IO
-import System.Environment (getArgs)
 
 type NomeAutor = String
 type Titulo = String
@@ -61,18 +60,18 @@ menu = do
     putStrLn "|  0 - SAIR                      |\n"
     putStrLn "----------------------------------"
     hFlush stdout
-    args <- readLn :: IO Int
-    case args of
-      1 -> do
+    entrada <- getLine
+    case entrada of
+      "1" -> do
         putStrLn "Você escolheu a opção 1"
         menu
-      2 -> do
+      "2" -> do
         putStrLn "Você escolheu a opção 2"
         menu
-      3 -> do
+      "3" -> do
         putStrLn "Você escolheu a opção 3"
         menu
-      0 -> do
+      "0" -> do
         putStrLn "Saindo..."
       _ -> do
         putStrLn "Opção inválida...."
