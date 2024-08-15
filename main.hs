@@ -26,12 +26,13 @@ livrosDaBiblioteca = [
 --emprestimoLivro :: [Livro]
 ----------------------------------------------------------------
 --função para buscar livros
-buscaLivros ::  [Livro] -> String -> [Livro]
-buscaLivros [] _ = []
+buscaLivros ::  [Livro] -> String -> (String, [Livro])
+buscaLivros [] _ = ("",[])
 buscaLivros (livro: resto) nome
-  | titulo livro == nome = livro : buscaLivros resto nome
-  | autor livro == nome = livro : buscaLivros resto nome
+  | titulo livro == nome = (nome, livro : encontrados)
+  | autor livro == nome = (nome, livro : encontrados)
   | otherwise = buscaLivros resto nome
+  where encontrados = snd (buscaLivros resto nome)
 ----------------------------------------------------------------
 --função para buscar um livro específico
 buscaLivro ::  [Livro] -> String -> String-> Livro
