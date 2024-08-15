@@ -18,6 +18,7 @@ data Livro = Livro {
 livrosDaBiblioteca :: [Livro]
 livrosDaBiblioteca = [
     Livro "O sertão vai virar mar" "Moacyr Scliar" True,
+    Livro "O sertão vai virar mar" "Moacyr Scliar" True,
     Livro "Água viva" "Clarice Lispector" True,
     Livro "Terror na Festa" "Janaína Amado" True
     ]
@@ -25,13 +26,13 @@ livrosDaBiblioteca = [
 --emprestimoLivro :: [Livro]
 ----------------------------------------------------------------
 --função para buscar livros
-buscaLivros ::  [Livro] -> String -> (String, [Livro])
-buscaLivros [] _ = ("",[])
+buscaLivros ::  [Livro] -> String -> [Livro]
+buscaLivros [] _ = []
 buscaLivros (livro: resto) nome
-  | titulo livro == nome = (nome, livro : encontrados)
-  | autor livro == nome = (nome, livro : encontrados)
+  | titulo livro == nome = livro : resto
+  | autor livro == nome = livro : resto
   | otherwise = buscaLivros resto nome
-  where encontrados = snd (buscaLivros resto nome)
+--where encontrados = snd (buscaLivros resto nome)
 ----------------------------------------------------------------
 --função para buscar um livro específico
 buscaLivro ::  [Livro] -> String -> String-> Livro
@@ -63,7 +64,10 @@ menu = do
     entrada <- getLine
     case entrada of
       "1" -> do
-        putStrLn "Você escolheu a opção 1"
+        putStrLn "Digite o nome do autor ou título do livro: "
+        hFlush stdout
+        entrada2 <- getLine
+        putStrLn ("Resultado para "++show entrada2 ++" "++show(buscaLivros livrosDaBiblioteca entrada2))
         menu
       "2" -> do
         putStrLn "Você escolheu a opção 2"
@@ -76,8 +80,6 @@ menu = do
       _ -> do
         putStrLn "Opção inválida...."
         menu
-
-    
 -------------------------------------------------------------------
 main :: IO()
 main = do
