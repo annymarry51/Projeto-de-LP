@@ -9,21 +9,29 @@ type Titulo = String
 -- Definição do tipo de dados Livro
 data Livro = Livro {
     titulo :: Titulo,
-    autor :: NomeAutor,
-    emprestado :: Bool
+    autor :: NomeAutor
 } deriving Show
 
 ----------------------------------------------------------------
---livros que tem na biblioteca
-livrosDaBiblioteca :: [Livro]
+--Lista de livros que tem na biblioteca
 livrosDaBiblioteca = [
-    Livro "O sertão vai virar mar" "Moacyr Scliar" True,
-    Livro "O sertão vai virar mar" "Moacyr Scliar" True,
-    Livro "Água viva" "Clarice Lispector" True,
-    Livro "Terror na Festa" "Janaína Amado" True
+    Livro "O sertão vai virar mar" "Moacyr Scliar" 
+    Livro "O sertão vai virar mar" "Moacyr Scliar" 
+    Livro "Água viva" "Clarice Lispector" 
+    Livro "Terror na Festa" "Janaína Amado" 
     ]
 ----------------------------------------------------------------
---emprestimoLivro :: [Livro]
+--Lista de livros que estão emprestados
+livroEmprestados = adicionarLivros
+----------------------------------------------------------------
+--Funcão para adicionar livros na lista de livros emprestados
+adicionaLivros :: [Livro] -> [Livro]
+adicionaLivros x = x ++ livroEmprestados
+----------------------------------------------------------------
+--função de emprestar livros
+emprestimoLivro :: buscaLivro
+emprestimoLivro = if buscaLivro /= Livro " " " " False then adicionaLivros [buscaLivro]
+else error "Não foi possível realizar empréstimo"
 ----------------------------------------------------------------
 --função para buscar livros
 buscaLivros ::  [Livro] -> String -> [Livro]
@@ -45,8 +53,6 @@ buscaLivro (livro: resto) nome escritor =
 --emprestimoLivro :: (buscaLivro) -> [Livro]
 --emprestimoLivro buscaLivro = buscaLivro !emprestado 
 -----------------------------------------------------------------
--- opções do menu
---opcao1 :: IO ()
 
 -----------------------------------------------------------------
 --menu do sistema...
