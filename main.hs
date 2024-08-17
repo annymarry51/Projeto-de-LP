@@ -73,7 +73,7 @@ imprimeLivros (livro:resto) = "\nTitulo do Livro: "++titulo livro++"\nNome do au
 --MENU DA BIBLIOTECA
 menu :: [Livro] -> [Livro] -> IO ()
 menu livrosDaBiblioteca livrosEmprestados = do
-    putStrLn "----SEJA BEM VINDO AO SISTEMA SILIB---\n"
+    putStrLn "----SEJA BEM VINDO AO SISTEMA SIBLIB---\n"
     putStrLn "|  O QUE DESEJA FAZER?                |\n"
     putStrLn "|  1 - BUSCA DE LIVRO                 |\n"
     putStrLn "|  2 - EMPRESTIMO DE LIVRO            |\n"
